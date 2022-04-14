@@ -1,8 +1,8 @@
-'''
+"""
 Tests similarity functions.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 import unittest
 from decimal import Decimal
@@ -13,19 +13,18 @@ from segeval.ml import precision, recall, fmeasure
 
 
 class TestSimilarity(unittest.TestCase):
-
-    '''
+    """
     Test similarity helper functions.
-    '''
+    """
 
     def test_boundary_confusion_matrix(self):
-        '''
+        """
         Test confusion matrix.
-        '''
+        """
         cm = boundary_confusion_matrix(
-            [set([]), set([2]), set([]), set([]), set([1]), set([1]),
-             set([1]), set([1])],
-            [set([1]), set([1]), set([]), set([1]), set([]), set([1]),
+            [set([]), {2}, set([]), set([]), {1}, {1},
+             {1}, {1}],
+            [{1}, {1}, set([]), {1}, set([]), {1},
              set([]), set([])],
             boundary_format=BoundaryFormat.sets)
         self.assertEqual(cm[None][1], 2)
@@ -38,9 +37,9 @@ class TestSimilarity(unittest.TestCase):
         self.assertEqual(cm[2][2], 0)
 
     def test_boundary_statistics(self):
-        '''
+        """
         Test boundary statistics.
-        '''
+        """
         value = boundary_statistics([2, 3, 6], [5, 6])
         self.assertEqual(
             {'matches': [1],
@@ -54,10 +53,10 @@ class TestSimilarity(unittest.TestCase):
              'substitutions': []}, value)
 
     def test_bed_confusion_matrix(self):
-        '''
+        """
         Test BED-based confusion matrix upon two segmentations.
-        '''
-        hypothesis = (5,5,5,5,1)
+        """
+        hypothesis = (5, 5, 5, 5, 1)
         reference = HEARST_1997_STARGAZER['stargazer']['2']
         value = boundary_confusion_matrix(hypothesis, reference)
         self.assertAlmostEquals(float(precision(value)), 0.23076923)
@@ -65,9 +64,9 @@ class TestSimilarity(unittest.TestCase):
         self.assertAlmostEquals(float(fmeasure(value)), 0.375)
 
     def test_bed_confusion_matrix_datasets(self):
-        '''
+        """
         Test BED-based confusion matrix upon a dataset.
-        '''
+        """
         hypothesis = HYPOTHESIS_STARGAZER
         reference = HEARST_1997_STARGAZER
         value = boundary_confusion_matrix(hypothesis, reference)

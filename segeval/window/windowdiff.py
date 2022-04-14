@@ -1,18 +1,17 @@
-'''
+"""
 Implementation of the WindowDiff segmentation evaluation metric described in
 [PevznerHearst2002]_ with an optional modification to fix incorrect error
 counting at the beginning and end of segmentations provided by
 [LamprierEtAl2007]_.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import division, absolute_import
 from decimal import Decimal
 from segeval.window import __compute_window_size__, WINDOW_METRIC_DEFAULTS
 from segeval.format import (BoundaryFormat, convert_masses_to_positions,
                             convert_positions_to_masses, convert_nltk_to_masses)
 from segeval.util import __fnc_metric__, SegmentationMetricError
-
 
 WINDOWDIFF_METRIC_DEFAULTS = dict(WINDOW_METRIC_DEFAULTS)
 WINDOWDIFF_METRIC_DEFAULTS.update({
@@ -22,10 +21,10 @@ WINDOWDIFF_METRIC_DEFAULTS.update({
 
 def __create_paired_window__(hypothesis, reference, window_size,
                              lamprier_et_al_2007_fix):
-    '''
+    """
     Create a set of pairs of units from each segmentation to go over using a
     window.
-    '''
+    """
     phantom_size = 0
     if lamprier_et_al_2007_fix is False:
         units_ref_hyp = zip(reference, hypothesis)
@@ -41,7 +40,7 @@ def __create_paired_window__(hypothesis, reference, window_size,
 def __window_diff__(hypothesis, reference, window_size, one_minus,
                     boundary_format, return_parts, fnc_round,
                     lamprier_et_al_2007_fix):
-    '''
+    """
     Calculates the WindowDiff segmentation evaluation metric score for a
     hypothetical segmentation against a reference segmentation for a given
     window size.  The standard method of calculating the window size
@@ -72,7 +71,7 @@ def __window_diff__(hypothesis, reference, window_size, one_minus,
 
     .. note:: See :func:`segeval.convert_masses_to_positions` for an example of
               the input format.
-    '''
+    """
     # Convert from NLTK types
     if boundary_format == BoundaryFormat.nltk:
         reference = convert_nltk_to_masses(reference)
@@ -140,6 +139,5 @@ length (%(ref)i is not %(hyp)i).' % {'ref': len(reference),
 
 
 def window_diff(*args, **kwargs):
-
     return __fnc_metric__(__window_diff__, args, kwargs,
                           WINDOWDIFF_METRIC_DEFAULTS)

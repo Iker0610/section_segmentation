@@ -1,20 +1,20 @@
-'''
+"""
 Inter-coder agreement statistic Fleiss' Pi.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import, division
 from decimal import Decimal
 from segeval.agreement import __fnc_metric__, __actual_agreement_linear__
 
 
 def __fleiss_pi_linear__(dataset, **kwargs):
-    '''
+    """
     Calculates Fleiss' :math:`\pi` (or multi-:math:`\pi`), originally proposed in
     [Fleiss1971]_, and is equivalent to Siegel and Castellan's :math:`K`
     [SiegelCastellan1988]_.  For 2 coders, this is equivalent to Scott's :math:`\pi`
     [Scott1955]_.
-    '''
+    """
     metric_kwargs = dict(kwargs)
     metric_kwargs['return_parts'] = True
     # Arguments
@@ -47,10 +47,10 @@ def __fleiss_pi_linear__(dataset, **kwargs):
 
 
 def fleiss_pi_linear(dataset, **kwargs):
-    '''
+    """
     Calculates Fleiss' :math:`\pi` (or multi-:math:`\pi`), originally proposed in
     [Fleiss1971]_, and is equivalent to Siegel and Castellan's :math:`K`
     [SiegelCastellan1988]_.  For 2 coders, this is equivalent to Scott's :math:`\pi`
     [Scott1955]_.
-    '''
+    """
     return __fnc_metric__(__fleiss_pi_linear__, dataset, **kwargs)

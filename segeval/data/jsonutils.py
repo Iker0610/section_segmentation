@@ -1,8 +1,8 @@
-'''
+"""
 JSON output module (for general JSON writing operations).
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 import json
 import os
@@ -21,9 +21,9 @@ SegmentationType = enum(linear='linear')
 
 
 def __write_json__(filepath, data):
-    '''
+    """
     Write a JSON file using the given data.
-    '''
+    """
     # Create a default filename if a dir is specified
     if os.path.isdir(filepath):
         filepath = os.path.join(filepath, 'output.json')
@@ -36,25 +36,24 @@ def __write_json__(filepath, data):
 
 
 def output_linear_mass_json(filepath, dataset):
-    '''
+    """
     Takes a file path and :class:`Dataset` and serializes it as JSON.
 
     :param filepath: Path to the mass file containing segment position codings.
     :type filepath: :func:`str`
-    '''
-    data = {Field.segmentation_type: SegmentationType.linear}
-    data[Field.items] = dataset
+    """
+    data = {Field.segmentation_type: SegmentationType.linear, Field.items: dataset}
     data.update(dataset.properties)
     __write_json__(filepath, data)
 
 
 def input_linear_mass_json(filepath):
-    '''
+    """
     Reads a file path. Returns segmentation mass codings as a :class:`Dataset`.
 
     :param filepath: Path to the mass file containing segment position codings.
     :type filepath: :func:`str`
-    '''
+    """
     from segeval.data import Dataset, DataIOError
     dataset = Dataset()
     data = dict()

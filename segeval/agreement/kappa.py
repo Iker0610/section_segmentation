@@ -1,19 +1,19 @@
-'''
+"""
 Inter-coder agreement statistic Fleiss' Kappa.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import, division
 from decimal import Decimal
 from segeval.agreement import __fnc_metric__, __actual_agreement_linear__
 
 
 def __fleiss_kappa_linear__(dataset, **kwargs):
-    '''
+    """
     Calculates Fleiss' :math:`\kappa` (or multi-:math:`\kappa`), originally proposed in
     [DaviesFleiss1982]_.  For 2 coders, this is equivalent to Cohen's :math:`\kappa`
     [Cohen1960]_.
-    '''
+    """
     metric_kwargs = dict(kwargs)
     metric_kwargs['return_parts'] = True
     # Arguments
@@ -57,9 +57,9 @@ def __fleiss_kappa_linear__(dataset, **kwargs):
 
 
 def fleiss_kappa_linear(dataset, **kwargs):
-    '''
+    """
     Calculates Fleiss' :math:`\kappa` (or multi-:math:`\kappa`), originally proposed in
     [DaviesFleiss1982]_.  For 2 coders, this is equivalent to Cohen's :math:`\kappa`
     [Cohen1960]_.
-    '''
+    """
     return __fnc_metric__(__fleiss_kappa_linear__, dataset, **kwargs)

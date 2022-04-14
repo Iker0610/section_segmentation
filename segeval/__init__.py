@@ -1,10 +1,10 @@
-'''
+"""
 Segmentation evaluation metric package. Provides evaluation metrics to
 evaluate the performance of both human and automatic text (i.e., discourse)
 segmenters.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 import sys
 from types import ModuleType
@@ -56,7 +56,7 @@ all_by_module = {
                                  'weight_t_scale'],
     'segeval.window':           ['compute_window_size'],
     'segeval.window.pk':        ['pk'],
-    'segeval.window.windowdiff':['window_diff'],
+    'segeval.window.windowdiff': ['window_diff'],
     'segeval.compute':          ['summarize'],
     'segeval.format':           ['BoundaryFormat',
                                  'boundary_string_from_masses',

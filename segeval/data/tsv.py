@@ -1,8 +1,8 @@
-'''
+"""
 TSV output module (for general TSV writing operations).
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 import csv
 from segeval.format import convert_positions_to_masses
@@ -11,7 +11,7 @@ DEFAULT_DELIMITER = '\t'
 
 
 def input_linear_mass_tsv(filepath, delimiter=DEFAULT_DELIMITER):
-    '''
+    """
     Takes a file path.  Returns segmentation mass codings as a :class:`Dataset`.
 
     :param filepath: path to the mass file containing segment mass codings.
@@ -19,7 +19,7 @@ def input_linear_mass_tsv(filepath, delimiter=DEFAULT_DELIMITER):
                          a tab, but it can also be a comma, whitespace, etc.
     :type filepath: str
     :type delimiter: str
-    '''
+    """
 
     from segeval.data import Dataset, name_from_filepath
     # List version of file
@@ -52,7 +52,7 @@ def input_linear_mass_tsv(filepath, delimiter=DEFAULT_DELIMITER):
 
 
 def input_linear_positions_tsv(filepath, delimiter=DEFAULT_DELIMITER):
-    '''
+    """
     Takes a file path.  Returns segmentation mass codings as a :class:`Dataset`.
 
     :param filepath: path to the mass file containing segment position
@@ -66,7 +66,7 @@ def input_linear_positions_tsv(filepath, delimiter=DEFAULT_DELIMITER):
 
     .. warning:: This I/O function is for legacy files only and will be removed
         in later versions.
-    '''
+    """
     dataset = input_linear_mass_tsv(filepath, delimiter)
     # Convert each segment position to masses
     for item, coder_positions in dataset.items():

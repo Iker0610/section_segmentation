@@ -1,8 +1,8 @@
-'''
+"""
 Tests window-based segmentation metric utility functions.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 from segeval.window import compute_window_size
 from segeval.util import SegmentationMetricError
@@ -12,9 +12,9 @@ from segeval.data.samples import KAZANTSEVA2012_G5
 
 class TestWindow(TestCase):
 
-    '''
+    """
     Test window metric fncs.
-    '''
+    """
 
     def test_window_size(self):
         reference = [1, 2, 3]

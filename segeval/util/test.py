@@ -1,8 +1,8 @@
-'''
+"""
 Test utilities, and tests for said utilities.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 import unittest
 from decimal import Decimal
@@ -10,26 +10,24 @@ from segeval.util import SegmentationMetricError, __fnc_metric__
 
 
 class TestCase(unittest.TestCase):
-
-    '''
+    """
     A test case that supports performing assertAlmostEquals upon lists, tuples,
     or dicts of values.
-    '''
+    """
 
     DECIMAL_PLACES = 4
 
     def assertEqualSet(self, first, second):
-        '''
+        """
         Convert the arguments into a list of sets.
-        '''
+        """
         return self.assertEqual([set(position) for position in first],
                                 [set(position) for position in second])
 
-    def assertAlmostEquals(self, first, second, places=DECIMAL_PLACES,
-                           msg=None):
-        '''
+    def assertAlmostEquals(self, first, second, places=DECIMAL_PLACES, msg=None):
+        """
         Automatically converts values to floats.
-        '''
+        """
 
         if isinstance(first, dict) and isinstance(second, dict):
             for item in set(list(first.keys()) + list(second.keys())):
@@ -67,29 +65,28 @@ class TestCase(unittest.TestCase):
 
 
 class TestTestCase(TestCase):
-
-    '''
+    """
     Test the test utilities.
-    '''
+    """
 
     def test_almost_equal_values(self):
-        '''
+        """
         Test a type mistmatch.
-        '''
+        """
         self.assertRaises(AssertionError, self.assertAlmostEquals,
                           {'a': 1},
                           {'a': 2})
 
     def test_mismatch(self):
-        '''
+        """
         Test a type mistmatch.
-        '''
+        """
         self.assertRaises(Exception, self.assertAlmostEquals, (), {})
 
     def test_equal_types(self):
-        '''
+        """
         Test a type mistmatch.
-        '''
+        """
         self.assertAlmostEquals({}, {})
         self.assertAlmostEquals([], [])
         self.assertAlmostEquals((), ())
@@ -106,10 +103,10 @@ class TestTestCase(TestCase):
         self.assertAlmostEquals(Decimal('0'), 0.0)
 
     def test_tuple_first(self):
-        self.assertRaises(Exception, self.assertAlmostEquals, (), (1))
+        self.assertRaises(Exception, self.assertAlmostEquals, (), 1)
 
     def test_tuple_second(self):
-        self.assertRaises(Exception, self.assertAlmostEquals, (1), ())
+        self.assertRaises(Exception, self.assertAlmostEquals, 1, ())
 
     def test_list_first(self):
         self.assertRaises(Exception, self.assertAlmostEquals, [], [1])
@@ -125,10 +122,9 @@ class TestTestCase(TestCase):
 
 
 class UtilTestCase(TestCase):
-
-    '''
+    """
     Test the test utilities.
-    '''
+    """
 
     def test_fnc_metric_missing_args(self):
         fnc_metric = lambda x: x

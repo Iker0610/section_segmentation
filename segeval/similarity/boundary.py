@@ -1,8 +1,8 @@
-'''
+"""
 Boundary Similarity (B) package.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import, division
 from segeval.similarity import __boundary_statistics__, SIMILARITY_METRIC_DEFAULTS
 from segeval.util import __fnc_metric__
@@ -37,9 +37,9 @@ def __boundary_similarity__(*args, **kwargs):
 
 
 def boundary_similarity(*args, **kwargs):
-    '''
+    """
     Boundary Similarity (B).
-    '''
+    """
 
     return __fnc_metric__(__boundary_similarity__, args, kwargs,
                           SIMILARITY_METRIC_DEFAULTS)

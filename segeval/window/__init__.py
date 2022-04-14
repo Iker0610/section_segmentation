@@ -1,8 +1,8 @@
-'''
+"""
 Window-based segmentation evaluation metrics package.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import division, absolute_import
 from decimal import Decimal
 from segeval.metric import METRIC_DEFAULTS
@@ -20,23 +20,23 @@ WINDOW_METRIC_DEFAULTS.update({
 
 
 def __compute_window_size__(reference, fnc_round, boundary_format):
-    '''
+    """
     Compute a window size from a dict of segment masses.
 
     :param masses: A dict of segment masses.
     :type masses: dict
-    '''
+    """
     all_masses = list()
     # Define fnc
 
     def __list_coder_masses__(inner_coder_masses):
-        '''
+        """
         Recursively collect all masses.
 
         :param inner_coder_masses: Either a dict of dicts, or dict of a list of
             masses.
         :type inner_coder_masses: dict or list
-        '''
+        """
         if hasattr(inner_coder_masses, 'items'):
             for cur_inner_coder_masses in inner_coder_masses.values():
                 __list_coder_masses__(cur_inner_coder_masses)

@@ -1,29 +1,29 @@
-'''
+"""
 Utility functions and classes for the package.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 from segeval.compute import compute_pairwise_values
 
 
 class SegmentationMetricError(Exception):
-    '''
+    """
     Indicates that a runtime check has failed, and the algorithm is performing
     incorrectly, or input validation has failed.  Generation of this exception
     is tested.
 
     :param message: Explanation for the exception.
     :type message: str
-    '''
+    """
 
     def __init__(self, message):
-        '''
+        """
         Initializer.
 
         :param message: Explanation for the exception.
         :type message: str
-        '''
+        """
         Exception.__init__(self, message)
 
 
@@ -70,8 +70,7 @@ def __fnc_metric__(fnc_metric, args: tuple, kwargs: dict, kw_defaults):
             metric_kwargs['boundary_format'] = hypothesis.boundary_format
             if hypothesis.boundary_format is not reference.boundary_format:
                 raise SegmentationMetricError(
-                    'Datasets contain differing boundary formats; {0} != {1}'
-                        .format(hypothesis.boundary_format, reference.boundary_format))
+                    'Datasets contain differing boundary formats; {0} != {1}'.format(hypothesis.boundary_format, reference.boundary_format))
             return compute_pairwise_values(fnc_metric, hypothesis, reference, **metric_kwargs)
         else:
             # Compare a single pair of segmentations

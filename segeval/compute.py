@@ -1,15 +1,15 @@
-'''
+"""
 Abstract computation utilities.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 from segeval.util.math import mean, std, var, stderr
 from itertools import combinations
 
 
 def compute_pairwise_values(fnc_metric, dataset_a, dataset_b=None, **kwargs):
-    '''
+    """
     Calculate mean pairwise segmentation metric pairs for functions that take
     pairs of segmentations.
 
@@ -20,7 +20,7 @@ def compute_pairwise_values(fnc_metric, dataset_a, dataset_b=None, **kwargs):
     :type dataset: dict
     :type fnc_metric:     func
     :type permuted:       bool
-    '''
+    """
 
     pairs = dict()
     fnc_kwargs = dict(kwargs)
@@ -32,13 +32,13 @@ def compute_pairwise_values(fnc_metric, dataset_a, dataset_b=None, **kwargs):
 
     # Define fnc per group
     def __per_group__(prefix, inner_dataset_m, inner_dataset_n, has_two_datasets):
-        '''
+        """
         Recurse through a dict to find levels where a metric can be calculated.
 
         :param inner_dataset: Segmentation mass dataset (including \
                                      multiple codings).
         :type inner_dataset: dict
-        '''
+        """
 
         labels = set(inner_dataset_m.keys())
         if inner_dataset_n is not None:
@@ -102,11 +102,10 @@ def compute_pairwise_values(fnc_metric, dataset_a, dataset_b=None, **kwargs):
 
 
 def summarize(pairs):
-    '''
+    """
     Takes a list of values and returns the mean, standard deviation, variance, standard error, and number of values.
 
     :param pairs: List of numerical values
     :type pairs: list
-    '''
-    return mean(pairs.values()), std(pairs.values()), var(pairs.values()), \
-           stderr(pairs.values()), len(pairs)
+    """
+    return mean(pairs.values()), std(pairs.values()), var(pairs.values()), stderr(pairs.values()), len(pairs)

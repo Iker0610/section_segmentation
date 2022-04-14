@@ -1,9 +1,9 @@
-'''
+"""
 Machine learning metric package.  This package a variety of traditional machine
 learning metrics that have been adapted for use in segmentation.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import, division
 from decimal import Decimal
 from collections import defaultdict
@@ -91,7 +91,7 @@ def __recall__(matrix, classification, return_parts=False):
 
 def __fmeasure__(matrix, classification=None, beta=Decimal('1.0'),
                  return_parts=False):
-    '''
+    """
     Calculate F-measure, also known as F-score.
 
     .. math::
@@ -105,7 +105,7 @@ def __fmeasure__(matrix, classification=None, beta=Decimal('1.0'),
 
     :returns: F-measure.
     :rtype: :class:`decimal.Decimal`
-    '''
+    """
 
     class_precision = __precision__(matrix, classification)
     class_recall = __recall__(matrix, classification)
@@ -126,7 +126,7 @@ def __fmeasure__(matrix, classification=None, beta=Decimal('1.0'),
 
 
 def precision(matrix, classification=None, version=Average.micro):
-    '''
+    """
     Calculate precision.
 
     :param matrix: Confusion matrix
@@ -136,7 +136,7 @@ def precision(matrix, classification=None, version=Average.micro):
     :type matrix: :class:`ConfusionMatrix`
     :type classification: Any :class:`dict` index
     :type version: :class:`Average`
-    '''
+    """
 
     arguments = dict()
     arguments['matrix'] = matrix
@@ -145,7 +145,7 @@ def precision(matrix, classification=None, version=Average.micro):
 
 
 def recall(matrix, classification=None, version=Average.micro):
-    '''
+    """
     Calculate recall.
 
     :param matrix: Confusion matrix
@@ -155,7 +155,7 @@ def recall(matrix, classification=None, version=Average.micro):
     :type matrix: :class:`ConfusionMatrix`
     :type classification: Any :class:`dict` index
     :type version: :class:`Average`
-    '''
+    """
 
     arguments = dict()
     arguments['matrix'] = matrix
@@ -163,9 +163,8 @@ def recall(matrix, classification=None, version=Average.micro):
     return __value_micro_macro__(__recall__, arguments, classification, version)
 
 
-def fmeasure(matrix, classification=None, beta=Decimal('1.0'),
-             version=Average.micro):
-    '''
+def fmeasure(matrix, classification=None, beta=Decimal('1.0'), version=Average.micro):
+    """
     Calculate FMeasure.
 
     :param matrix: Confusion matrix
@@ -175,7 +174,7 @@ def fmeasure(matrix, classification=None, beta=Decimal('1.0'),
     :type matrix: :class:`ConfusionMatrix`
     :type classification: Any :class:`dict` index
     :type version: :class:`Average`
-    '''
+    """
 
     arguments = dict()
     arguments['matrix'] = matrix
@@ -185,10 +184,10 @@ def fmeasure(matrix, classification=None, beta=Decimal('1.0'),
 
 
 class _InnerConfusionMatrix(defaultdict):
-    '''
+    """
     Inner dict of the confusion matrix; used to determine when the classes list
     is dirty.
-    '''
+    """
 
     def __init__(self, parent):
         self.__parent__ = parent
@@ -200,10 +199,10 @@ class _InnerConfusionMatrix(defaultdict):
 
 
 class ConfusionMatrix(dict):
-    '''
+    """
     A :func:`dict`-like representation of a confusion matrix offering some automation.
     To access/store values, use: ``matrix[predicted][actual]``.
-    '''
+    """
     __classes__ = set()
     __dirty_classes__ = False
 
@@ -211,7 +210,7 @@ class ConfusionMatrix(dict):
         raise AttributeError('no such method')
 
     def __getitem__(self, key):
-        '''
+        """
         Return default dicts and store them so that the following is possible:
 
         >>> matrix = ConfusionMatrix()
@@ -224,8 +223,7 @@ class ConfusionMatrix(dict):
         >>> matrix['c']['d']
         0
 
-        '''
-        value = None
+        """
         if key not in self:
             value = _InnerConfusionMatrix(self)
             dict.__setitem__(self, key, value)
@@ -234,9 +232,9 @@ class ConfusionMatrix(dict):
         return value
 
     def classes(self):
-        '''
+        """
         Retrieve the set of all classes.
-        '''
+        """
         if self.__dirty_classes__:
             self.__classes__ = set()
             for predicted, values in self.items():

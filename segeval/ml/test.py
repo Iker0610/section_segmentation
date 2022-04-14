@@ -1,8 +1,8 @@
-'''
+"""
 Tests the machine learning (ML) statistics functions, and ml package.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 import unittest
 from decimal import Decimal
@@ -14,14 +14,14 @@ from segeval.util import SegmentationMetricError
 
 class TestConfusionMatrix(unittest.TestCase):
 
-    '''
+    """
     Confusion matrix tests.
-    '''
+    """
 
     def test_matrix_set_add(self):
-        '''
+        """
         Test matrix.
-        '''
+        """
         matrix = cm()
         matrix['p']['p'] += 2
         matrix['p']['n'] = 3
@@ -31,9 +31,9 @@ class TestConfusionMatrix(unittest.TestCase):
         self.assertEqual(matrix['a']['b'], 0)
 
     def test_setitem(self):
-        '''
+        """
         Ensure that __setitem__ raises an AttributeError
-        '''
+        """
         exception = False
         matrix = cm()
         try:
@@ -43,9 +43,9 @@ class TestConfusionMatrix(unittest.TestCase):
         self.assertTrue(exception, 'AttributeError not raised')
 
     def test_matrix_classes(self):
-        '''
+        """
         Test matrix.
-        '''
+        """
         matrix = cm()
         matrix['p']['p'] += 2
         matrix['p']['n'] = 3
@@ -54,19 +54,19 @@ class TestConfusionMatrix(unittest.TestCase):
         self.assertEqual(matrix['p']['f'], 0)
         self.assertEqual(matrix['a']['b'], 0)
 
-        self.assertEqual(matrix.classes(), set(['p', 'n', 'a', 'b', 'f']))
+        self.assertEqual(matrix.classes(), {'p', 'n', 'a', 'b', 'f'})
 
 
 class TestML(unittest.TestCase):
 
-    '''
+    """
     Machine-learning metric tests.
-    '''
+    """
 
     def test_precision(self):
-        '''
+        """
         Test precision.
-        '''
+        """
         matrix = cm()
         matrix['p']['p'] += 1
         matrix['p']['f'] += 1
@@ -115,9 +115,9 @@ class TestML(unittest.TestCase):
         self.assertEqual(__precision__(matrix, 'f'), Decimal('0'))
 
     def test_recall(self):
-        '''
+        """
         Test recall.
-        '''
+        """
         matrix = cm()
         matrix['p']['p'] += 1
         matrix['p']['f'] += 1
@@ -162,9 +162,9 @@ class TestML(unittest.TestCase):
         self.assertEqual(__recall__(matrix, 'f'), Decimal('0'))
 
     def test_fmeasure(self):
-        '''
+        """
         Test FMeasure.
-        '''
+        """
         matrix = cm()
         matrix['p']['p'] += 1
         matrix['p']['f'] += 1
@@ -219,9 +219,9 @@ class TestML(unittest.TestCase):
         self.assertEqual(__fmeasure__(matrix, 'f'), Decimal('0'))
 
     def test_exception_on_incorrect_average(self):
-        '''
+        """
         Test exception on incorrect average.
-        '''
+        """
         matrix = cm()
         matrix['p']['p'] += 1
         matrix['p']['f'] += 1

@@ -1,14 +1,14 @@
-'''
+"""
 Edit distance package.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 
 
 def identify_types(string_a, string_b):
-    '''
+    """
     Construct a list of boundary types from two boundary strings.
-    '''
+    """
     # Convert to strings and retrieve types
     boundary_types = set()
     for string in [string_a, string_b]:

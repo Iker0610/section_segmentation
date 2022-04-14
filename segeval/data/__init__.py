@@ -1,9 +1,9 @@
-'''
+"""
 Data I/O package.  Used to import and export data to and from TSV and JSON
 files.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 import os
 import copy
@@ -25,16 +25,15 @@ FILETYPES_DEFAULT = FILETYPE_JSON
 
 
 class Dataset(defaultdict):
-
-    '''
+    """
     Represents a set of texts (i.e., items) that have been segmentations by coders.
-    '''
+    """
 
     def __init__(self, item_coder_data=None, properties=None,
                  boundary_types=None, boundary_format=BoundaryFormat.mass):
-        '''
+        """
         Initialize a dataset.
-        '''
+        """
         defaultdict.__init__(self, dict)
         self.properties = dict()
         self.boundary_format = boundary_format
@@ -48,7 +47,7 @@ class Dataset(defaultdict):
         if boundary_types is not None:
             self.boundary_types = set(boundary_types)
         else:
-            self.boundary_types = set([1])
+            self.boundary_types = {1}
         # Coders
         self.coders = set()
         # Populate coders
@@ -57,9 +56,9 @@ class Dataset(defaultdict):
                 self.coders.add(coder)
 
     def __iadd__(self, other, prepend_item=None):
-        '''
+        """
         Add one dataset's data to this dataset.
-        '''
+        """
         # Combine item codings
         for item, codings in other.items():
             if prepend_item is not None:
@@ -80,17 +79,17 @@ class Dataset(defaultdict):
         return self
 
     def __add__(self, other):
-        '''
+        """
         Copy this dataset and add the other dataset to it.
-        '''
+        """
         dataset = self.copy()
         dataset += other
         return dataset
 
     def copy(self):
-        '''
+        """
         Create a deep copy of the entire dataset object and properties.
-        '''
+        """
         dataset = copy.deepcopy(self)
         dataset.coders = copy.deepcopy(self.coders)
         dataset.properties = copy.deepcopy(self.properties)
@@ -110,9 +109,9 @@ def get_coders(container):
 
 
 def name_from_filepath(filepath):
-    '''
+    """
     Creates a default coder name from a filename.
-    '''
+    """
     name = os.path.split(filepath)[1]
     name_basic = os.path.splitext(name)[0]
     name = name_basic if len(name_basic) > 0 else name
@@ -120,24 +119,22 @@ def name_from_filepath(filepath):
 
 
 class DataIOError(Exception):
-
-    '''
+    """
     Indicates that an input processing error has occurred.
-    '''
+    """
 
     def __init__(self, message, exception=None):
-        '''
+        """
         Initializer.
 
         :param message: Explanation for the exception.
         :type message: str
-        '''
+        """
         Exception.__init__(self, message, exception)
 
 
-def load_nested_folders_dict(containing_dir, filetype, dataset=None,
-                             prepend_item=list()):
-    '''
+def load_nested_folders_dict(containing_dir, filetype, dataset=None, prepend_item=None):
+    """
     Loads TSV files from a file directory structure, which reflects the
     directory structure in nested :func:`dict` with each directory name
     representing a key in these :func:`dict`.
@@ -148,9 +145,12 @@ def load_nested_folders_dict(containing_dir, filetype, dataset=None,
     :type containing_dir: str
     :type filetype: str
 
-    '''
+    """
 
     # Create empty dataset
+    if prepend_item is None:
+        prepend_item = list()
+
     if dataset is None:
         dataset = Dataset()
     # Vars

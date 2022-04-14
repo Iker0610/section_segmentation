@@ -1,8 +1,8 @@
-'''
+"""
 Similarity utility functions based upon boundary edit distance.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import, division
 from segeval.similarity.distance import identify_types
 from segeval.similarity.distance.multipleboundary import boundary_edit_distance
@@ -13,7 +13,6 @@ from segeval.format import (BoundaryFormat, boundary_string_from_masses,
                             convert_positions_to_masses, convert_nltk_to_masses)
 from segeval.util import __fnc_metric__, SegmentationMetricError
 
-
 SIMILARITY_METRIC_DEFAULTS = dict(METRIC_DEFAULTS)
 SIMILARITY_METRIC_DEFAULTS.update({
     'n_t': 2,
@@ -22,11 +21,10 @@ SIMILARITY_METRIC_DEFAULTS.update({
 })
 
 
-def __boundary_statistics__(
-        segs_a, segs_b, boundary_types, boundary_format, n_t, weight):
-    '''
+def __boundary_statistics__(segs_a, segs_b, boundary_types, boundary_format, n_t, weight):
+    """
     Compute boundary similarity applying the weighting functions specified.
-    '''
+    """
 
     # Convert from NLTK types
     if boundary_format == BoundaryFormat.nltk:
@@ -81,9 +79,9 @@ def __boundary_statistics__(
 
 
 def __boundary_confusion_matrix__(*args, **kwargs):
-    '''
+    """
     Create a confusion matrix using boundary edit distance.
-    '''
+    """
 
     # Trim kwargs
     metric_kwargs = dict(kwargs)
@@ -110,7 +108,6 @@ def __boundary_confusion_matrix__(*args, **kwargs):
         matrix[hyp][ref] += 1
     # Add full misses
     for addition in statistics['additions']:
-        hyp, ref = None, None
         boundary_type, side = addition
         if side == 'a':
             hyp = None
@@ -124,13 +121,11 @@ def __boundary_confusion_matrix__(*args, **kwargs):
 
 
 def boundary_confusion_matrix(*args, **kwargs):
-
     return __fnc_metric__(__boundary_confusion_matrix__, args, kwargs,
                           SIMILARITY_METRIC_DEFAULTS)
 
 
 def boundary_statistics(*args, **kwargs):
-
     default_kwargs = dict(SIMILARITY_METRIC_DEFAULTS)
     del default_kwargs['one_minus']
     del default_kwargs['return_parts']

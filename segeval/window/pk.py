@@ -1,9 +1,9 @@
-'''
+"""
 Implementation of the Pk segmentation evaluation metric described in
 [BeefermanBerger1999]_.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import division, absolute_import
 from decimal import Decimal
 from segeval.window import __compute_window_size__, WINDOW_METRIC_DEFAULTS
@@ -41,7 +41,7 @@ def __pk__(hypothesis, reference, window_size, one_minus, boundary_format,
     sum_differences = 0
     # Slide window over and sum the number of varying windows
     measurements = 0
-    for i in range(0, len(reference) - (window_size)):
+    for i in range(0, len(reference) - window_size):
         # Create probe windows with k boundaries inside
         window_ref = reference[i:i + window_size + 1]
         window_hyp = hypothesis[i:i + window_size + 1]

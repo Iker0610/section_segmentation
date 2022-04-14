@@ -77,7 +77,7 @@ def __boundaries__(segmentation, **kwargs):
 
 
 def __actual_agreement_linear__(dataset, **kwargs):
-    '''
+    """
     Calculate actual (i.e., observed or :math:`\\text{A}_a`), segmentation
     agreement without accounting for chance, using [ArtsteinPoesio2008]_'s
     formulation as adapted in [FournierInkpen2012]_:
@@ -131,7 +131,7 @@ def __actual_agreement_linear__(dataset, **kwargs):
     Other real and contrived examples can be found in
     :mod:`segeval.data.Samples`.
 
-    '''
+    """
     metric_kwargs = dict(kwargs)
     del metric_kwargs['fnc_compare']
     metric_kwargs['return_parts'] = True

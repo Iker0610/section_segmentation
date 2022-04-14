@@ -1,8 +1,8 @@
-'''
+"""
 General metric utilities and constants.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import
 from segeval.format import BoundaryFormat
 

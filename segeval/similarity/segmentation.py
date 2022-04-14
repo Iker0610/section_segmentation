@@ -1,8 +1,8 @@
-'''
+"""
 Segmentation Similarity (S) package.
 
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
-'''
+"""
 from __future__ import absolute_import, division
 from segeval.similarity import __boundary_statistics__, SIMILARITY_METRIC_DEFAULTS
 from segeval.util import __fnc_metric__
@@ -10,9 +10,9 @@ from decimal import Decimal
 
 
 def __segmentation_similarity__(*args, **kwargs):
-    '''
+    """
     Segmentation Similarity (S).
-    '''
+    """
 
     metric_kwargs = dict(kwargs)
     del metric_kwargs['return_parts']
@@ -38,8 +38,8 @@ def __segmentation_similarity__(*args, **kwargs):
 
 
 def segmentation_similarity(*args, **kwargs):
-    '''
+    """
     Segmentation Similarity (S).
-    '''
+    """
     return __fnc_metric__(__segmentation_similarity__, args, kwargs,
                           SIMILARITY_METRIC_DEFAULTS)
