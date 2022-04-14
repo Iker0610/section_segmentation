@@ -32,7 +32,7 @@ all_by_module = {
     'segeval.agreement.kappa':  ['fleiss_kappa_linear'],
     'segeval.agreement.pi':     ['fleiss_pi_linear'],
     'segeval.data':             ['Dataset', 'load_nested_folders_dict'],
-    'segeval.data.jsonutils':   ['Field', 'input_linear_mass_json',
+    'segeval.data.jsonutils':   ['Field', 'input_linear_mass_json', 'input_linear_boundaries_json',
                                  'output_linear_mass_json'],
     'segeval.data.tsv':         ['input_linear_mass_tsv'],
     'segeval.data.samples':     ['KAZANTSEVA2012_G5', 'KAZANTSEVA2012_G2',

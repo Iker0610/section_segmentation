@@ -9,7 +9,6 @@ import os
 import codecs
 from segeval.util.lang import enum
 
-
 Field = enum(
     # Property fields
     segmentation_type='segmentation_type',
@@ -88,4 +87,43 @@ def input_linear_mass_json(filepath):
     else:
         raise DataIOError('Expected an entry \'{0}\' that contained segmentation codings for specific individual texts (i.e., items) in file: {1}'
                           .format(Field.items, filepath))
+    return dataset
+
+
+def input_linear_boundaries_json(filepath):
+    from segeval.data import Dataset, DataIOError, BoundaryFormat
+
+    # Open file
+    with open(filepath, encoding='utf-8') as file:
+        data = json.load(file)
+
+    data['boundary_types'] = set(data['boundary_types'])
+
+    # Check type
+    if Field.segmentation_type in data:
+        if data[Field.segmentation_type] != SegmentationType.linear:
+            raise DataIOError('Segmentation type \'{0}\' expected, but encountered \'{1}\' for file: {2}'
+                              .format(SegmentationType.linear, data[Field.segmentation_type], filepath))
+    else:
+        raise DataIOError(
+            'The entry \'segmentation_type\' was expected in JSON for file:' + filepath)
+
+    dataset = Dataset(boundary_format=BoundaryFormat.sets, boundary_types=data['boundary_types'])
+
+    # Duplicate to store other properties
+    dataset.properties = data
+
+    # If separated into multiple items for one coder per file
+    if Field.items in data:
+        items = data[Field.items]
+
+        # Convert item labels into strings
+        for item, coder_masses in items.items():
+            for coder, boundaries in coder_masses.items():
+                dataset[item][coder] = [set(boundary) for boundary in boundaries]
+
+        # Remove from properties
+        del dataset.properties[Field.items]
+    else:
+        raise DataIOError('Expected an entry \'{0}\' that contained segmentation codings for specific individual texts (i.e., items) in file: {1}'.format(Field.items, filepath))
     return dataset
