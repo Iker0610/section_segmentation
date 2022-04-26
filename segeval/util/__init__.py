@@ -32,10 +32,12 @@ def __fnc_metric__(fnc_metric, args: tuple, kwargs: dict, kw_defaults):
     # Create default keyword arguments
     metric_kwargs = dict(kw_defaults)
     metric_kwargs.update(kwargs)
+
     # Initialize arguments
     hypothesis = None
     reference = None
     dataset = None
+
     # Parse arguments
     if len(args) == 2:
         hypothesis, reference = args
@@ -52,6 +54,7 @@ def __fnc_metric__(fnc_metric, args: tuple, kwargs: dict, kw_defaults):
             del metric_kwargs['dataset']
         else:
             raise SegmentationMetricError('Expected either a reference and hypothesis or dataset argument.')
+
     # Fix the case when people put in just a single int by accident, e.g., (20) => (20,)
     if isinstance(hypothesis, int):
         hypothesis = (hypothesis,)

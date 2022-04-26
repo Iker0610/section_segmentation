@@ -97,8 +97,6 @@ def input_linear_boundaries_json(filepath):
     with open(filepath, encoding='utf-8') as file:
         data = json.load(file)
 
-    data['boundary_types'] = set(data['boundary_types'])
-
     # Check type
     if Field.segmentation_type in data:
         if data[Field.segmentation_type] != SegmentationType.linear:
@@ -117,13 +115,19 @@ def input_linear_boundaries_json(filepath):
     if Field.items in data:
         items = data[Field.items]
 
+        coders: set[str] = set()
         # Convert item labels into strings
         for item, coder_masses in items.items():
             for coder, boundaries in coder_masses.items():
+                coders.add(coder)
                 dataset[item][coder] = [set(boundary) for boundary in boundaries]
 
         # Remove from properties
         del dataset.properties[Field.items]
+
+        # Update coders
+        dataset.coders = coders
+
     else:
         raise DataIOError('Expected an entry \'{0}\' that contained segmentation codings for specific individual texts (i.e., items) in file: {1}'.format(Field.items, filepath))
     return dataset

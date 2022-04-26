@@ -42,7 +42,7 @@ def convert_annotations_to_boundaries(text_input_folder, annotation_input_folder
 
 if __name__ == '__main__':
     text_input = './data'
-    annotation_input = './annotations/KAI/schemas'
-    output = 'boundaries/boundaries_KAI.json'
+    annotation_input = './annotations/Maria/schemas'
+    output = 'boundaries/boundaries_Maria.json'
 
     convert_annotations_to_boundaries(text_input, annotation_input, output)

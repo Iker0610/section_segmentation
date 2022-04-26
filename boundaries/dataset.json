@@ -2,15 +2,15 @@
   "segmentation_type": "linear",
   "boundary_format": "sets",
   "boundary_types": [
-    "REF",
     "MOT",
-    "ANT-FAM",
-    "EXP",
-    "ANT-PER",
-    "TRA",
-    "DIA-DIF",
+    "EV",
     "DIA",
-    "EV"
+    "EXP",
+    "DIA-DIF",
+    "REF",
+    "ANT-FAM",
+    "TRA",
+    "ANT-PER"
   ],
   "items": {
     "S0034-98872012000800012-2": {
@@ -3888,10 +3888,10 @@
         [],
         [],
         [],
+        [],
         [
           "TRA"
         ],
-        [],
         [],
         [],
         [],

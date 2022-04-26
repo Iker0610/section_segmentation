@@ -1,0 +1,155 @@
+{
+  "B": {
+    "PI": "0.6749844116909553619662511713",
+    "KAPPA": "0.6749906057746853541336244740",
+    "BIAS": "0.00001905725422429786015864180281",
+    "Agreement": "0.675"
+  },
+  "S": {
+    "PI": "0.9996670092840438044792441486",
+    "KAPPA": "0.9996670156301159626598367138",
+    "BIAS": "0.00001905725422429786015864180281",
+    "Agreement": "0.9996670252548537"
+  },
+  "S0034-98872012000800012-2,KAI,Maria": {
+    "count_edits": 6,
+    "additions": [
+      ["ANT-PER", "b"],
+      ["MOT", "b"],
+      ["EV", "a"],
+      ["EV", "b"],
+      ["TRA", "a"]
+    ],
+    "substitutions": [
+      ["EXP", "TRA"]
+    ],
+    "transpositions": [],
+    "pbs": 2106,
+    "S": 0.9995251661918328,
+    "B": 0.625
+  },
+  "S0034-98872014000900015-1,KAI,Maria": {
+    "count_edits": 11,
+    "additions": [
+      ["EXP", "b"],
+      ["EXP", "b"],
+      ["EXP", "a"],
+      ["EV", "b"],
+      ["TRA", "b"],
+      ["EV", "b"],
+      ["EV", "a"],
+      ["EXP", "b"],
+      ["EV", "b"]
+    ],
+    "substitutions": [
+      ["EXP", "EV"],
+      ["TRA", "EV"]
+    ],
+    "transpositions": [],
+    "pbs": 4392,
+    "S": 0.9995825743776563,
+    "B": 0.5925925925925926
+  },
+  "S0370-41062017000100012-1,KAI,Maria": {
+    "count_edits": 5,
+    "additions": [
+      ["ANT-PER", "b"],
+      ["MOT", "b"],
+      ["TRA", "b"],
+      ["TRA", "a"],
+      ["TRA", "b"]
+    ],
+    "substitutions": [],
+    "transpositions": [],
+    "pbs": 3012,
+    "S": 0.9997233289065959,
+    "B": 0.6666666666666666
+  },
+  "S0370-41062017000100013-5,KAI,Maria": {
+    "count_edits": 0,
+    "additions": [],
+    "substitutions": [],
+    "transpositions": [],
+    "pbs": 588,
+    "S": 1.0,
+    "B": 1.0
+  },
+  "S0376-78922010000100012-1,KAI,Maria": {
+    "count_edits": 0,
+    "additions": [],
+    "substitutions": [],
+    "transpositions": [],
+    "pbs": 246,
+    "S": 1.0,
+    "B": 1.0
+  },
+  "S1130-01082017000100023-1,KAI,Maria": {
+    "count_edits": 0,
+    "additions": [],
+    "substitutions": [],
+    "transpositions": [],
+    "pbs": 444,
+    "S": 1.0,
+    "B": 1.0
+  },
+  "S1130-01082017001200013-1,KAI,Maria": {
+    "count_edits": 4,
+    "additions": [
+      ["ANT-PER", "b"],
+      ["MOT", "b"],
+      ["DIA", "b"],
+      ["EXP", "b"]
+    ],
+    "substitutions": [],
+    "transpositions": [],
+    "pbs": 2736,
+    "S": 0.9997563352826511,
+    "B": 0.6923076923076923
+  },
+  "S1130-05582005000200006-1,KAI,Maria": {
+    "count_edits": 7,
+    "additions": [
+      ["TRA", "b"],
+      ["DIA", "a"],
+      ["EXP", "a"],
+      ["EV", "a"],
+      ["EV", "b"],
+      ["DIA", "a"]
+    ],
+    "substitutions": [
+      ["TRA", "EV"]
+    ],
+    "transpositions": [],
+    "pbs": 3591,
+    "S": 0.9997215260373155,
+    "B": 0.5625
+  },
+  "S1130-05582012000100006-1,KAI,Maria": {
+    "count_edits": 4,
+    "additions": [
+      ["MOT", "b"],
+      ["DIA", "a"],
+      ["TRA", "a"]
+    ],
+    "substitutions": [
+      ["EV", "TRA"]
+    ],
+    "transpositions": [],
+    "pbs": 1239,
+    "S": 0.9995387985702756,
+    "B": 0.6363636363636364
+  },
+  "S1139-76322011000300007-1,KAI,Maria": {
+    "count_edits": 2,
+    "additions": [
+      ["EXP", "b"]
+    ],
+    "substitutions": [],
+    "transpositions": [
+      [93, 94, "TRA"]
+    ],
+    "pbs": 870,
+    "S": 0.9996168582375479,
+    "B": 0.8181818181818182
+  }
+}

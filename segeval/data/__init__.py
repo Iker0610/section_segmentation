@@ -29,31 +29,38 @@ class Dataset(defaultdict):
     Represents a set of texts (i.e., items) that have been segmentations by coders.
     """
 
-    def __init__(self, item_coder_data=None, properties=None,
-                 boundary_types=None, boundary_format=BoundaryFormat.mass):
+    def __init__(self, item_coder_data=None, properties=None, boundary_types=None, boundary_format=BoundaryFormat.mass):
         """
         Initialize a dataset.
         """
         defaultdict.__init__(self, dict)
         self.properties = dict()
         self.boundary_format = boundary_format
+
         # Masses
         if item_coder_data is not None and item_coder_data is not dict:
             defaultdict.update(self, item_coder_data)
+
         # Properties
         if properties is not None:
-            self.properties.update(properties)
+            self.properties = properties
+        else:
+            self.properties = dict()
+
         # Boundary types
         if boundary_types is not None:
-            self.boundary_types = set(boundary_types)
+            self.boundary_types = frozenset(boundary_types)
         else:
             self.boundary_types = {1}
+
         # Coders
         self.coders = set()
+
         # Populate coders
         for coder_masses in defaultdict.values(self):
             for coder in coder_masses.keys():
                 self.coders.add(coder)
+
 
     def __iadd__(self, other, prepend_item=None):
         """
